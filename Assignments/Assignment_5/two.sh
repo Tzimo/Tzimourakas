@@ -1,12 +1,8 @@
 # problem 2
 a=$1
-#ls -l ~/$a | head -c6 $a
 [ -w $a ] && W="Write = yes" || W="Write = No"
-
 [ -x $a ] && X="Execute = yes" || X="Execute = No"
-# find out if file has read permission or not
 [ -r $a ] && R="Read = yes" || R="Read = No"
-
 echo "$file permissions"
 echo "$W"
 echo "$R"

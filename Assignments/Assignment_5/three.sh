@@ -6,4 +6,4 @@ for file in *.$b; do
   new=$(printf "$a%03d.$b" "$counter")
   mv -- "$file" "$new"
   let counter+=1
-done
+done 
