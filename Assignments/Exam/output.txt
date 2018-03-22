@@ -1,0 +1,10 @@
+The position of 21 in array is 6 
+The number 2 is not in the array
+The number 2 is not in the array
+The number 10 is not in the array
+The number 10 is not in the array
+The number 10 is not in the array
+The number 10 is not in the array
+The number 10 is not in the array
+The number 10 is not in the array
+The number 10 is not in the array

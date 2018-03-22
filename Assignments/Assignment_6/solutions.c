@@ -13,7 +13,7 @@ void main(int argc, char **argv)
 	int i =0;
 	double objective=atof(argv[1]);
 	double clearance=atof(argv[2]);
-	double accuracy = atof(argv[3]);
+	double accuracy=atof(argv[3]);
 
 	//printf("%f\n%f\n%f\n",objective,clearance,accuracy);
 	double *V;
