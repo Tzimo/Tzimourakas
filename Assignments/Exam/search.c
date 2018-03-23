@@ -36,28 +36,32 @@ int main(int argc,char *argv[]){
 	//printf(output_name);
 
 	// Creates file to output answer
-	FILE *output;
-	output = fopen(output_name,"ab+");
+	FILE * output;
+	output = fopen(output_name,"a+");
 
 	// Trigger is to indicate if the number was found or not. Is tripped if found.
 	int trigger;
-
+	//printf("%d",tag);
 
 	// Binary Search
-	if (tag == 2){
-	unsigned int L = 0, R = counter, M;
+	if (tag % 2 == 0){
+	int L = 0, R = counter, M;
 	while (L<R){
 		M = (L+R-1)/2;
 		if ( atoi(argv[2]) == array[M]){
 			trigger = 1;
-			fprintf(output,"The position of %d in array is %d \n",target, M);
+			//FILE * output;
+			//output = fopen(output_name,"a+");
+			fprintf(output,"The position of %d in array is %d \n",target,M);
+			printf("The position of %d in array is %d \n",target,M);
+			fclose(output);
 			break;
 		}
 		else if ( atoi(argv[2]) < array[M]){
-			L = M + 1;
+			R = M;
 		}
 		else{
-			R = M -1;
+			L = M + 1;
 		}
 	}
 }
@@ -66,9 +70,13 @@ else{
 	// Linear Search
 	for (int i = 0; i < counter; ++i){
 		if (array[i] == target){
-			fprintf(output,"The position of %d in array is %d \n",target, i);
-			trigger = 1;
-			break;
+		//FILE * output;
+		//output = fopen(output_name,"a+");
+		fprintf(output,"The position of %d in array is %d \n",target,i);
+		printf("The position of %d in array is %d \n",target,i);
+		fclose(output);
+		trigger = 1;
+		break;
 		}
 		else{
 			continue;
@@ -78,7 +86,20 @@ else{
 
 	// iv) Writes out result to output file
 	if (trigger != 1){
+		//FILE * output;
+		//output = fopen(output_name,"a+");
 		fprintf(output,"The number %d is not in the array\n",target);
+		printf("The number %d is not in the array\n",target);
+		fclose(output);
+
+		//fclose(output);
 	}
-	fclose(output);
+	/*else if(trigger == 2){
+		fprintf(output,"The position of %d in array is %d \n",target, array[i]);
+		fclose(output);
+	}
+	else{
+		fprintf(output,"The number %d is not in the array\n",target);
+		fclose(output);
+	}*/
 }
