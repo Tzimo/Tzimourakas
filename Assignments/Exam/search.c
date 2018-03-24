@@ -27,21 +27,20 @@ int main(int argc,char *argv[]){
 	int *array = realloc(temp, counter*sizeof(int));
 
 	// iii) Searches for specified target number in array
-
+	//Array1.out
 	// Grabs file name tag if name is even or odd
 	int tag = argv[1][5] - '0';
-	char output_name[6];
-	strncpy(output_name,argv[1],6);
-	strcat(output_name,".out");
-	//printf(output_name);
+	char output_name[10];
+	strncpy(output_name,argv[1],7);
+	strcat(output_name,"out");
+	//printf("%c\n",*output_name);
 
 	// Creates file to output answer
-	FILE * output;
-	output = fopen(output_name,"a+");
+	FILE *out;
+	out = fopen(output_name,"a+");
 
-	// Trigger is to indicate if the number was found or not. Is tripped if found.
+	// Trigger is to i ndicate if the number was found or not. Is tripped if found.
 	int trigger;
-	//printf("%d",tag);
 
 	// Binary Search
 	if (tag % 2 == 0){
@@ -52,9 +51,9 @@ int main(int argc,char *argv[]){
 			trigger = 1;
 			//FILE * output;
 			//output = fopen(output_name,"a+");
-			fprintf(output,"The position of %d in array is %d \n",target,M);
+			fprintf(out,"The position of %d in array is %d \n",target,M);
 			printf("The position of %d in array is %d \n",target,M);
-			fclose(output);
+			//fclose(output);
 			break;
 		}
 		else if ( atoi(argv[2]) < array[M]){
@@ -70,11 +69,8 @@ else{
 	// Linear Search
 	for (int i = 0; i < counter; ++i){
 		if (array[i] == target){
-		//FILE * output;
-		//output = fopen(output_name,"a+");
-		fprintf(output,"The position of %d in array is %d \n",target,i);
+		fprintf(out,"The position of %d in array is %d \n",target,i);
 		printf("The position of %d in array is %d \n",target,i);
-		fclose(output);
 		trigger = 1;
 		break;
 		}
@@ -86,20 +82,8 @@ else{
 
 	// iv) Writes out result to output file
 	if (trigger != 1){
-		//FILE * output;
-		//output = fopen(output_name,"a+");
-		fprintf(output,"The number %d is not in the array\n",target);
+		fprintf(out,"The number %d is not in the array\n",target);
 		printf("The number %d is not in the array\n",target);
-		fclose(output);
-
-		//fclose(output);
 	}
-	/*else if(trigger == 2){
-		fprintf(output,"The position of %d in array is %d \n",target, array[i]);
-		fclose(output);
-	}
-	else{
-		fprintf(output,"The number %d is not in the array\n",target);
-		fclose(output);
-	}*/
+	fclose(out);
 }
