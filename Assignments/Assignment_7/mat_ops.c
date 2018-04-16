@@ -18,7 +18,7 @@ double **BuildMatrix(int Nrows, int Ncols){
 }
 
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 
  	// Reading in files
@@ -130,12 +130,18 @@ int main(int argc, char **argv)
 	FILE *output5;
 
 	// Creating output files
+	char name1[50], name2[50], name3[50], name4[50], name5[50];
+	sprintf(name1,"%s_mult_%s_mult_%s",argv[1],argv[2],argv[3]);
+	sprintf(name2,"%s_mult_%s_plus_%s",argv[1],argv[2],argv[3]);
+	sprintf(name3,"%s_plus_%s_mult_%s",argv[1],argv[2],argv[3]);
+	sprintf(name4,"%s_mult_%s_minus_%s",argv[1],argv[2],argv[3]);
+	sprintf(name5,"%s_minus_%s_mult_%s",argv[1],argv[2],argv[3]);
 
-	output1 = fopen("A_mult_B_mult_C","w");
-	output2 = fopen("A_mult_B_plus_C","w");
-	output3 = fopen("A_plus_B_mult_C","w");
-	output4 = fopen("A_mult_B_minus_C","w");
-	output5 = fopen("A_minus_B_mult_C","w");
+	output1 = fopen(name1,"w");
+	output2 = fopen(name2,"w");
+	output3 = fopen(name3,"w");
+	output4 = fopen(name4,"w");
+	output5 = fopen(name5,"w");
 
 
 // ABC 
