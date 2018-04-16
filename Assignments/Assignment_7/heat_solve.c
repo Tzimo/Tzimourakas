@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <lapacke.h>
 
 
 double **BuildMatrix(int Nrows, int Ncols){
@@ -16,6 +17,7 @@ double **BuildMatrix(int Nrows, int Ncols){
 	}
 	return A;
 }
+
 
 double conductivity(int x, int y,int problem_index){
 
@@ -79,7 +81,7 @@ double output(){
 
 
 //double **Build_LHS(int cells_per_side, **conductivity, int **source, int **BC){
-double **Build_LHS(float cells_per_side,int problem_index){
+double **Build_LHS(float cells_per_side, int problem_index){
 
 
 	// Initializing data
@@ -326,11 +328,21 @@ return F;
 
 int main(int argc, char *argv[])
 {
-	
 
-	int nodes_per_side = atoi(argv[1]);
+	int cells_per_side = atoi(argv[1]);
 	int problem_index = atoi(argv[2]);
 
-	double **RHS = Build_RHS(nodes_per_side,problem_index);
-	double **LHS = Build_LHS(nodes_per_side,problem_index);
+
+	int nodes_per_side = cells_per_side + 1;
+	double **K = Build_LHS(cells_per_side,problem_index);
+	double **F = Build_RHS(cells_per_side,problem_index);
+
+	lapack_int n, nrhs, lda, ldb, info;
+	lapack_int ipiv[nodes_per_side*nodes_per_side];
+	n = nodes_per_side;
+	nrhs = 1;
+	lda = nodes_per_side;
+	ldb = 1;
+
+	info = LAPACKE_dgesv(LAPACK_ROW_MAJOR,n,nrhs,*K,lda,ipiv,*F,ldb);
 }
