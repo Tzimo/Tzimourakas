@@ -14,7 +14,6 @@
 
 
 
-
 /*double **BuildMatrix(int Nrows, int Ncols){
 
 	int n;
@@ -25,8 +24,8 @@
 		A[n] = A[n-1]+ Ncols;
 	}
 	return A;
-}
-
+}*/
+/*
 
 double conductivity(int x, int y,int problem_index){
 
