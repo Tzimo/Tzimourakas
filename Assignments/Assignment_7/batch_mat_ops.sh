@@ -2,7 +2,6 @@
 # Bash Script
 #!/bin/bash
 
-a=$1
 cp $1A .
 cp $1B .
 cp $1C .
