@@ -32,11 +32,10 @@ double **Build_LHS(float cells_per_side, int problem_index){
 	{
 		x_array[counter] = i;
 		y_array[counter] = i;
-
 		counter = counter + 1;
 	}
 
-
+    
 	// Filling index 
 	for (int i = 0; i < nodes_per_side; ++i)
 	{

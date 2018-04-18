@@ -13,6 +13,31 @@
 #include "BuildMatrix.h"
 
 
+int main(int argc, char *argv[])
+{
+	// Taking user input
+	int cells_per_side = atoi(argv[1]);
+	int problem_index = atoi(argv[2]);
+
+	// Calculating grid for user input
+	int nodes_per_side = cells_per_side + 1;
+	double **K = Build_LHS(cells_per_side,problem_index);
+	double **F = Build_RHS(cells_per_side,problem_index);
+	double **Answer = Build_RHS(cells_per_side,problem_index);
+
+
+	// Initializing lapack variables
+	lapack_int n, nrhs, lda, ldb, info;
+	lapack_int ipiv[nodes_per_side*nodes_per_side];
+	n = nodes_per_side;
+	nrhs = 1;
+	lda = nodes_per_side;
+	ldb = 1;
+
+	// Calculating matrix inverse
+	info = LAPACKE_dgesv(LAPACK_ROW_MAJOR,n,nrhs,*K,lda,ipiv,*Answer,ldb);
+
+}
 
 /*double **BuildMatrix(int Nrows, int Ncols){
 
@@ -336,41 +361,3 @@ return F;
 }
 
 */
-int main(int argc, char *argv[])
-{
-	// Taking user input
-	int cells_per_side = atoi(argv[1]);
-	int problem_index = atoi(argv[2]);
-
-	// Calculating grid for user input
-	int nodes_per_side = cells_per_side + 1;
-	double **K = Build_LHS(cells_per_side,problem_index);
-	double **F = Build_RHS(cells_per_side,problem_index);
-	double **Answer = Build_RHS(cells_per_side,problem_index);
-
-
-	// Initializing lapack variables
-	lapack_int n, nrhs, lda, ldb, info;
-	lapack_int ipiv[nodes_per_side*nodes_per_side];
-	n = nodes_per_side;
-	nrhs = 1;
-	lda = nodes_per_side;
-	ldb = 1;
-
-	// Calculating matrix inverse
-	info = LAPACKE_dgesv(LAPACK_ROW_MAJOR,n,nrhs,*K,lda,ipiv,*Answer,ldb);
-
-	// Creating output file
-	FILE *output;
-	char name[50];
-	sprintf(name,"heat_solution_%s_%s",argv[1],argv[2]);
-
-	output = fopen(name,"w");
-
-	// Outputting data to file
-	for (int i = 0; i < n; ++i)
-		fprintf(output, "%f %f %f\n",*K[i],*F[i],*Answer[i]);
-	return(info);
-
-	fclose(output);
-}
