@@ -1,0 +1,4 @@
+To run the final project code.
+Navigate to the Final_Project/part_1/ directory
+Run the command 'make' to compile the file matrixproduct_fix_1.c
+run command './matrixproduct_fix_1' to run the matrix product to compute product and time code.

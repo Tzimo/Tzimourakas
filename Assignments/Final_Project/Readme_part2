@@ -1,0 +1,8 @@
+To run the final project code.
+
+Navigate to the /Final_Project/part_2/ directory
+
+Run the command 'make' to compile the file matrixproduct_mpi.c
+
+To run the parallelized matrix product code 
+	enter the command './matrixproduct_mpi n' where n is the number of processors to use
