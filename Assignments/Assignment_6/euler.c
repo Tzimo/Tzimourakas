@@ -62,16 +62,7 @@ for ( double deltat = 0; deltat < time_length; deltat = deltat + step) {
 			Fy_MS = (G*m_M*m_S*(y_M[i]-y_S[i])) / pow(d_SM,3);
 			Fx_EM = (G*m_E*m_M*(x_E-x_M[i])) / pow(d_EM,3);
 			Fy_EM = (G*m_E*m_M*(y_E-y_M[i])) / pow(d_EM,3);
-			// Velocity
-			// vx_S[i+1] = vx_S[i] + deltat*(Fx_MS + Fx_ES)/(m_S);
-			// vy_S[i+1] = vy_S[i] + deltat*(Fy_MS + Fy_ES)/(m_S);
-			// vx_M[i+1] = vx_M[i] + deltat*(Fx_EM - Fx_MS)/(m_M);
-			// vy_M[i+1] = vy_M[i] + deltat*(Fy_EM - Fy_MS)/(m_M);
-			// // Position
-			// x_S[i+1] = x_S[i] + deltat*(vx_S[i+1]);
-			// y_S[i+1] = y_S[i] + deltat*(vy_S[i+1]);
-			// x_M[i+1] = x_M[i] + deltat*(vx_M[i+1]);
-			// y_M[i+1] = y_M[i] + deltat*(vy_M[i+1]);
+
 			vx_S[i+1] = vx_S[i] + step*(Fx_MS + Fx_ES)/(m_S);
 			vy_S[i+1] = vy_S[i] + step*(Fy_MS + Fy_ES)/(m_S);
 			vx_M[i+1] = vx_M[i] + step*(Fx_EM - Fx_MS)/(m_M);
@@ -82,9 +73,6 @@ for ( double deltat = 0; deltat < time_length; deltat = deltat + step) {
 			x_M[i+1] = x_M[i] + step*(vx_M[i+1]);
 			y_M[i+1] = y_M[i] + step*(vy_M[i+1]);
 			i++;
-			//printf("%d\n",i);
-			//printf("%f\n",deltat);
-			// double time_temp = sizeof(x_S)/sizeof(double);
 			double time_temp = i*step;
 			// Check conditions
 			if (d_SM <= (r_M + clearance)){
